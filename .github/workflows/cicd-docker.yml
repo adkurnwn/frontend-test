@@ -11,7 +11,7 @@ env:
   DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
   DOCKER_HUB_ACCESS_TOKEN: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
   IMAGE_NAME: frontend-test
-  IMAGE_TAG: ${{ steps.set-tag.outputs.image_tag }}
+  IMAGE_TAG: dev-actions-${{ github.sha }}
   DEV_DEPLOY_SERVER: ${{ secrets.DEV_DEPLOY_SERVER }}
   DEV_DEPLOY_USER: ${{ secrets.DEV_DEPLOY_USER }}
   DEV_DEPLOY_PATH: ${{ secrets.DEV_DEPLOY_PATH }}
@@ -60,13 +60,6 @@ jobs:
       run: |
         echo "${{ env.DOCKER_HUB_ACCESS_TOKEN }}" | docker login -u ${{ env.DOCKER_HUB_USERNAME }} --password-stdin
         echo "login berhasil: ${{ env.DOCKER_HUB_USERNAME }}"
-
-    # atur tag name sesuai branch dan sha (tidak boleh ada slash)
-    - name: Set Docker image tag
-      id: set-tag
-      run: |
-        BRANCH_NAME="${GITHUB_REF_NAME//\//-}"
-        echo "image_tag=${BRANCH_NAME}-${GITHUB_SHA}" >> $GITHUB_OUTPUT
 
     - name: Build Docker image
       run: |
