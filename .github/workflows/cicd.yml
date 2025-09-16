@@ -64,7 +64,7 @@ jobs:
         # Create SSH directory
         mkdir -p ~/.ssh
         # Save the private key from GitHub secrets
-        echo "${{ env.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
+        echo "${{ env.DEV_SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
         # Set proper permissions (SSH requires these permissions)
         chmod 600 ~/.ssh/deploy_key
         # Add server to known hosts to prevent first-time connection prompts
