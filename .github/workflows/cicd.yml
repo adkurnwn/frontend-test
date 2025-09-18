@@ -12,7 +12,7 @@ env:
   DEV_DEPLOY_USER: ${{ secrets.DEV_DEPLOY_USER }}
   DEV_DEPLOY_PATH: ${{ secrets.DEV_DEPLOY_PATH }}
   DEV_SSH_PRIVATE_KEY: ${{ secrets.DEV_SSH_PRIVATE_KEY }}
-  DEV_DEPLOY_PORT: ${{ secrets.DEV_DEPLOY_PORT || '22' }}
+  DEV_DEPLOY_PORT: ${{ secrets.DEV_DEPLOY_PORT }}
 
 jobs:
   build-and-deploy:
